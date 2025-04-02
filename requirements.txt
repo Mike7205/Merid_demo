@@ -1,0 +1,12 @@
+streamlit
+numpy
+pandas
+plotly.express
+plotly.figure_factory
+plotly.graph_objects
+tensorflow
+tensorflow_probability
+arviz
+IPython
+pickle
+meridian
