@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -31,7 +30,7 @@ from meridian.record import Record
 from meridian.product import Product
 
 # Data source
-file_path = r"C:\Users\micha\Desktop\Models\3M\Meridian_files\mmm_dump.pkl"
+file_path = "mmm_dump.pkl"
 with open(file_path, 'rb') as file:
     mmm = pkl.load(file)
 
