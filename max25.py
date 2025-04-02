@@ -251,7 +251,7 @@ st.set_page_config(layout="wide")
 col1, col2 = st.columns([2, 1])  # Adjust the proportions as needed
 
 with col2:  # Right column
-    st.image(r"C:\Users\micha\Downloads\Cap_logo.png", width=350)
+    st.image("Cap_logo.png", width=350)
 
 with col1:  # Left column
     # Custom style for the header
