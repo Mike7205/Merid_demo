@@ -1,11 +1,11 @@
-streamlit==1.21.0
+streamlit==1.22.0
 numpy>=1.21.0
-pandas>=1.5.3
+pandas>=2.2, <3
 plotly>=5.3.0
 tensorflow>=2.11.0
 tensorflow-probability>=0.19.0
 arviz>=0.15.0
 ipython>=8.0.0
-git+https://github.com/Mike7205/meridian.git#egg=meridian
+google-meridian==1.0.4
 
 
