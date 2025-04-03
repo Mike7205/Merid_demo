@@ -284,7 +284,8 @@ prior = st.radio('', channel_list, horizontal=True, key='prior_radio')
 prior_posterior_chart(combined_df, prior)
 
 st.markdown("<br>", unsafe_allow_html=True)
-st.subheader('Channel Contribution', divider="blue") 
+st.subheader('Channel Contribution') #, divider="blue"
+st.divider()
 chart_col, table_col = st.columns([1.8, 1.2])
 
 with chart_col:
