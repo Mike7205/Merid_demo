@@ -37,15 +37,13 @@ from meridian.analysis import formatter
 
 
 # Data source
-
-@st.cache_data
-def load_data(file_path):
-    with open(file_path, 'rb') as file:
+@st.cache_resource
+def load_data("mmm_dump.pkl"):
+    with open("mmm_dump.pkl", 'rb') as file:
         data = pkl.load(file)
     return data
 
-file_path = "mmm_dump.pkl"
-mmm = load_data(file_path)
+mmm = load_data("mmm_dump.pkl")
 
 #file_path = "mmm_dump.pkl"
 #with open(file_path, 'rb') as file:   
