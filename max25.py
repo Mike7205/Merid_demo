@@ -25,7 +25,7 @@ from meridian.analysis import visualizer
 from meridian.analysis import summarizer
 from meridian.analysis import formatter
 
-from meridian.dataset import Dataset
+from meridian import Dataset #.dataset
 from meridian.record import Record
 from meridian.product import Product
 
