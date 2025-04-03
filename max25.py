@@ -278,7 +278,8 @@ st.divider()
 combined_df = prior_posterior_data()
 channel_list = [column for column in combined_df.columns if column != 'distribution']
 st.markdown("<br><br>", unsafe_allow_html=True)
-st.subheader('Channel Prior and Posterior Distributions', divider="blue") 
+st.subheader('Channel Prior and Posterior Distributions') #, divider="blue"
+st.divider()
 prior = st.radio('', channel_list, horizontal=True, key='prior_radio')
 prior_posterior_chart(combined_df, prior)
 
