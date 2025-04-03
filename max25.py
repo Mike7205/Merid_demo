@@ -25,25 +25,31 @@ from meridian.analysis import visualizer
 from meridian.analysis import summarizer
 from meridian.analysis import formatter
 
-#from meridian.dataset import Dataset 
-#from meridian.record import Record
-#from meridian.product import Product
+#import psutil
 
-import psutil
-
-def check_system_resources():
-    memory = psutil.virtual_memory()
-    st.write("Available memory:", memory.available / (1024 ** 2), "MB")
-    st.write("Used memory:", memory.used / (1024 ** 2), "MB")
-    st.write("Total memory:", memory.total / (1024 ** 2), "MB")
+#def check_system_resources():
+#    memory = psutil.virtual_memory()
+#    st.write("Available memory:", memory.available / (1024 ** 2), "MB")
+#    st.write("Used memory:", memory.used / (1024 ** 2), "MB")
+#    st.write("Total memory:", memory.total / (1024 ** 2), "MB")
 
 # check_system_resources()
 
 
 # Data source
+
+@st.cache_data
+def load_data(file_path):
+    with open(file_path, 'rb') as file:
+        data = pkl.load(file)
+    return data
+
 file_path = "mmm_dump.pkl"
-with open(file_path, 'rb') as file:   
-    mmm = pkl.load(file)
+mmm = load_data(file_path)
+
+#file_path = "mmm_dump.pkl"
+#with open(file_path, 'rb') as file:   
+#    mmm = pkl.load(file)
 
 def prior_posterior_data():
     global combined_df
