@@ -265,7 +265,7 @@ st.markdown(
     <style>
     [data-testid="stSidebarContent"] {
         color: black;
-        background-color: lightgrey;
+        background-color: #30B700;
     }
     </style>
     """,
@@ -273,7 +273,7 @@ st.markdown(
 )
 
 st.sidebar.subheader('Configuration parameters') #, divider="grey"
-
+st.divider()
 # definicja kontentu strony
 combined_df = prior_posterior_data()
 channel_list = [column for column in combined_df.columns if column != 'distribution']
