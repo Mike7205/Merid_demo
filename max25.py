@@ -247,7 +247,7 @@ def hill_curves_chart(K_hill_chart_data, hill):
     
     # Konfiguracja osi i układu
     fig_hill.update_layout(
-        title="Comparison of Prior and Posterior for Facebook",
+        title="Comparison of Prior and Posterior",
         xaxis_title="Media Units",
         yaxis_title="Values",
         template="plotly_white",
