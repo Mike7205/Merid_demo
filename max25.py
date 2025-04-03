@@ -32,7 +32,7 @@ from meridian.analysis import formatter
 # Data source
 file_path = "mmm_dump.pkl"
 with open(file_path, 'rb') as file:
-    mmm = pkl.load(file)
+    mmm = pkl.load(file_path)
 
 # visualizer.ModelDiagnostics(mmm).plot_prior_and_posterior_distribution()
 def prior_posterior_data():
