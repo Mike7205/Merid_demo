@@ -274,7 +274,7 @@ st.markdown(
     <style>
     [data-testid="stSidebarContent"] {
         color: black;
-        background-color: #30B700;
+        background-color: #30B700 !important;
     }
     </style>
     """,
