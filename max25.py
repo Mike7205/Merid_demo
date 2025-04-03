@@ -33,9 +33,9 @@ import psutil
 
 def check_system_resources():
     memory = psutil.virtual_memory()
-    print("Available memory:", memory.available / (1024 ** 2), "MB")
-    print("Used memory:", memory.used / (1024 ** 2), "MB")
-    print("Total memory:", memory.total / (1024 ** 2), "MB")
+    st.write("Available memory:", memory.available / (1024 ** 2), "MB")
+    st.write("Used memory:", memory.used / (1024 ** 2), "MB")
+    st.write("Total memory:", memory.total / (1024 ** 2), "MB")
 
 check_system_resources()
 
