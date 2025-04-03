@@ -36,6 +36,7 @@ with open(file_path, 'rb') as file:
 
 # visualizer.ModelDiagnostics(mmm).plot_prior_and_posterior_distribution()
 def prior_posterior_data():
+    visualizer.ModelDiagnostics(mmm).plot_prior_and_posterior_distribution()
     global combined_df
     media_channels = mmm.input_data.media_channel.to_numpy()
 
