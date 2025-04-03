@@ -272,7 +272,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.sidebar.subheader('Configuration parameters', divider="grey") 
+st.sidebar.subheader('Configuration parameters') #, divider="grey"
 
 # definicja kontentu strony
 combined_df = prior_posterior_data()
