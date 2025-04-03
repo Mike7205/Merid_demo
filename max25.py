@@ -25,9 +25,9 @@ from meridian.analysis import visualizer
 from meridian.analysis import summarizer
 from meridian.analysis import formatter
 
-from meridian import Dataset #.dataset
-from meridian.record import Record
-from meridian.product import Product
+#from meridian.dataset import Dataset 
+#from meridian.record import Record
+#from meridian.product import Product
 
 # Data source
 file_path = "mmm_dump.pkl"
