@@ -37,7 +37,7 @@ def check_system_resources():
     st.write("Used memory:", memory.used / (1024 ** 2), "MB")
     st.write("Total memory:", memory.total / (1024 ** 2), "MB")
 
-check_system_resources()
+# check_system_resources()
 
 
 # Data source
