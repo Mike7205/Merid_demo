@@ -34,9 +34,7 @@ file_path = "mmm_dump.pkl"
 with open(file_path, 'rb') as file:   
     mmm = pkl.load(file)
 
-# visualizer.ModelDiagnostics(mmm).plot_prior_and_posterior_distribution()
 def prior_posterior_data():
-    visualizer.ModelDiagnostics(mmm).plot_prior_and_posterior_distribution()
     global combined_df
     media_channels = mmm.input_data.media_channel.to_numpy()
 
@@ -55,7 +53,6 @@ def prior_posterior_data():
     return combined_df
 
 def prior_posterior_chart(combined_df, prior):   
-    # Filtracja danych dla 'prior' i 'posterior'
     prior_data = combined_df[combined_df['distribution'] == 'prior']
     posterior_data = combined_df[combined_df['distribution'] == 'posterior']
     
