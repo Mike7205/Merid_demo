@@ -259,7 +259,19 @@ with col1:  # Left column
         unsafe_allow_html=True)
 
 # Styl zakładki bocznej
-st.html("""<style>[data-testid="stSidebarContent"] {color: black; background-color: #30B700} </style>""")
+#st.html("""<style>[data-testid="stSidebarContent"] {color: black; background-color: #30B700} </style>""")
+st.markdown(
+    """
+    <style>
+    [data-testid="stSidebarContent"] {
+        color: black;
+        background-color: lightgrey;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.sidebar.subheader('Configuration parameters', divider="grey") 
 
 # definicja kontentu strony
