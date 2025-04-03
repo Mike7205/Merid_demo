@@ -35,7 +35,7 @@ from meridian.analysis import formatter
 
 # check_system_resources()
 
-
+st.set_page_config(layout="wide")
 # Data source
 @st.cache_resource
 def load_data(file_path):
@@ -260,7 +260,6 @@ def hill_curves_chart(K_hill_chart_data, hill):
     st.plotly_chart(fig_hill, key='fig_hill')
 
 # Configure page
-st.set_page_config(layout="wide")
 # Create a two-column layout
 col1, col2 = st.columns([2, 1])  # Adjust the proportions as needed
 
