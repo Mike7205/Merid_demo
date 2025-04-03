@@ -300,7 +300,8 @@ with table_col:
      st.dataframe(media_data, use_container_width=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
-st.subheader('Hill saturation curves', divider="blue") 
+st.subheader('Hill saturation curves')  #, divider="blue"
+st.divider()
 K_hill_chart_data = hill_curves()
 hill_channel_list = set(K_hill_chart_data['channel'])
 hill = st.radio('', list(hill_channel_list), horizontal=True, key='hill_radio')
