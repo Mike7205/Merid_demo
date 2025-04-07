@@ -346,5 +346,124 @@ def rr_write(mmm):
         
     return rr_text
 
+def cont_total(mmm):
+    Cont_total = visualizer.MediaSummary(mmm).summary_table()
+    cont_data = Cont_total[['channel', 'distribution', 'spend', 'roi', 'effectiveness']]
+    cont_data = cont_data[cont_data['distribution'] == 'posterior']
+    co_data = cont_data
+    
+    def extract_first_number(value):
+        try:
+            if isinstance(value, float):
+                return value
+            return float(value.split(" ")[0]) if "(" in value else 0.0
+        except (ValueError, AttributeError):
+            
+            return 0.0
+    
+    co_data['roi'] = co_data['roi'].apply(extract_first_number)
+    co_data['effectiveness'] = co_data['effectiveness'].apply(extract_first_number)
+    co_data['spend'] = co_data['spend'].replace({'\$': '', ',': ''}, regex=True).astype(float)
+    co_data.fillna(0)
+    
+    return co_data
+
+def cont_chart(co_data):
+    #Tworzenie wykresu w Plotly
+    fig_con = px.scatter(
+        co_data,
+        x='roi',  # Oś X
+        y='effectiveness',  # Oś Y
+        size='spend',  # Wielkość kółka zależna od 'spend'
+        color='channel',  # Kolor kółka według 'channel'
+        hover_data=['channel', 'spend', 'roi', 'effectiveness'],  # Dodatkowe informacje w podpowiedzi
+        labels={
+            'roi': 'ROI',
+            'effectiveness': 'Effectiveness',
+            'spend': 'Spend'
+        },
+        title='ROI vs. Effectiveness'
+    )
+    
+    # Dostosowanie wyglądu osi, tła i siatki
+    fig_con.update_layout(
+        plot_bgcolor='white',  # Białe tło
+        title=dict(
+            font=dict(family="Roboto", size=18, color="#3C4043"),  # Styl tytułu
+            x=0.05  # Pozycja tytułu względem osi
+        ),
+        xaxis=dict(
+            title="ROI",  # Tytuł osi X
+            titlefont=dict(size=14, family="Roboto", color="#5F6368"),
+            gridcolor="lightgrey",  # Kolor siatki
+            griddash="dash",  # Linia przerywana
+            zeroline=False
+        ),
+        yaxis=dict(
+            title="Effectiveness",  # Tytuł osi Y
+            titlefont=dict(size=14, family="Roboto", color="#5F6368"),
+            gridcolor="lightgrey",
+            griddash="dash",
+            zeroline=False
+        )
+    )
+
+    st.plotly_chart(fig_con, use_container_width=True)
+    
+def response_hill(mmm):
+    resp_hill = summarizer.visualizer.MediaEffects(mmm).hill_curves_dataframe()
+    res_hill = resp_hill[['channel', 'media_units', 'distribution', 'mean']].fillna(0)
+    res_hill = res_hill[res_hill['distribution'] == 'posterior']
+    res_hill['media spent'] = res_hill['media_units'] * 10000
+    res_hill['mean value'] = res_hill['mean'] * 10000
+    res_hi = res_hill[['channel','mean value', 'media spent']]
+    
+    return res_hi
+
+def response_hill_chart(res_hi):
+    fig_rh = px.line(
+        res_hi,
+        x='media spent',  # Oś X
+        y='mean value',  # Oś Y
+        color='channel',  # Linie w różnych kolorach dla każdego kanału
+        markers=True,  # Punkty na linii dla każdej wartości
+        labels={
+            'media spent': 'Media Spent',
+            'mean value': 'Mean Value',
+            'channel': 'Channel'
+        },
+        title='Response curves by marketing channel'
+    )
+    
+    # Dostosowanie wyglądu wykresu
+    fig_rh.update_layout(
+        plot_bgcolor='white',  # Białe tło
+        title=dict(
+            font=dict(family="Roboto", size=18, color="#3C4043"),  # Styl tytułu
+            x=0.05  # Pozycja tytułu względem osi
+        ),
+        xaxis=dict(
+            title="Media Spent",  # Tytuł osi X
+            titlefont=dict(size=14, family="Roboto", color="#5F6368"),
+            gridcolor="lightgrey",  # Kolor poziomej siatki
+            griddash="dash",  # Linia przerywana dla osi X
+            zeroline=False,
+            showline=True
+        ),
+        yaxis=dict(
+            title="Mean Value",  # Tytuł osi Y
+            titlefont=dict(size=14, family="Roboto", color="#5F6368"),
+            gridcolor="lightgrey",  # Kolor pionowej siatki
+            griddash="dash",  # Linia przerywana dla osi Y
+            zeroline=False,
+            showline=True
+        )
+    )
+
+    st.plotly_chart(fig_rh, use_container_width=True)
+   
+
+
+
 
 
