@@ -25,7 +25,7 @@ with col2:  # Right column
     
 with col1:  # Left column
     # Custom style for the header
-    st.markdown("<h2 style='font-size:36px; color:black; text-decoration:underline red;'>Marketing Mix Modelling Dashboard</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-size:46px; color:black; text-decoration:underline red;'>Marketing Mix Modelling Dashboard</h2>", unsafe_allow_html=True)
     
 
 # Styl zakładki bocznej
@@ -86,9 +86,17 @@ if show_results:
     adstock = st.radio('Choose a channel:', list(adstock_channel_list), horizontal=True, key='adstock_radio')
     adstock_curves_chart(K_adstock_chart_data, adstock)
     
-    
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.subheader('ROI vs Effectiveness', divider="blue") 
+    from max26_func import cont_total, cont_chart
+    co_data = cont_total(mmm)
+    cont_chart(co_data)
 
-
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.subheader('Response curves by marketing channel', divider="blue") 
+    from max26_func import response_hill, response_hill_chart
+    res_hi = response_hill(mmm)
+    response_hill_chart(res_hi)
 
 
 
