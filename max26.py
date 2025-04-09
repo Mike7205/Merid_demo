@@ -9,6 +9,7 @@ import plotly.graph_objects as go
 import IPython
 import pickle as pkl
 import max26_func
+import max26_opti_func
 
 # Data source
 file_path = r"C:\Users\micha\Desktop\Models\3M\Meridian_files\mmm_dump.pkl"
@@ -37,7 +38,7 @@ if show_results:
     from max26_func import rr_write
     rr_text = rr_write(mmm)
     st.markdown(f"<h1 style='font-size:26px; color:black; text-decoration:underline; text-decoration-color:blue;'>Model's R² {rr_text}</h1>", unsafe_allow_html=True)
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     st.subheader('Expected revenu vs. actual revenue', divider="blue") 
     from max26_func import fit_data, fit_chart
     fit_tabel = fit_data(mmm)
@@ -98,5 +99,42 @@ if show_results:
     res_hi = response_hill(mmm)
     response_hill_chart(res_hi)
 
+show_opti = st.sidebar.checkbox('Recommended budget allocation', value=False , key='key_opti')
+if show_opti:
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.subheader('Standard optimization scenario', divider="blue") 
+    from max26_opti_func import chacha_data, chacha_data_chart, opti_budget_tab  
+    cha_data = chacha_data(mmm)
+    chart_col, tab_col = st.columns([2, 3])  # Dwie kolumny: lewa większa
+    with chart_col:
+        st.markdown("<br>", unsafe_allow_html=True)
+        chacha_data_chart(cha_data)
+
+    with tab_col:
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.write('**Optimized budget allocation**')
+        opti_budget_tab(mmm, cha_data)
+            
 
 
+show_custom_opti = st.sidebar.checkbox('Customized budget allocation', value=False , key='key_custom_opti')
+if show_custom_opti:
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.subheader('Customized optimization scenario', divider="blue") 
+    #from max26_opti_func import chacha_data, chacha_data_chart, opti_budget_tab
+
+    #with st.sidebar.form("my_form"):
+    #    st.write("Enter new budget value")
+    #    budget_num = st.number_input(' ', value=1000000, placeholder="Type a number...", format="%d")       
+    #    submitted = st.form_submit_button("Submit")
+
+    #if submitted:
+    #    cha_data = chacha_data(mmm, budget_num)
+    #    chart_col, tab_col = st.columns([2, 3])  # Dwie kolumny: lewa większa
+    #    with chart_col:
+    #        st.markdown("<br>", unsafe_allow_html=True)
+    #        chacha_data_chart(cha_data)
+
+    #    with tab_col:
+    #        st.markdown("<br>", unsafe_allow_html=True)
+    #        opti_budget_tab(mmm, cha_data)
