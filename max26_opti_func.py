@@ -25,8 +25,7 @@ from meridian.analysis import analyzer
 from meridian.analysis import visualizer
 from meridian.analysis import summarizer
 from meridian.analysis import formatter
-
-  
+ 
 def chacha_data(mmm):
     from meridian.analysis.optimizer import BudgetOptimizer
     
@@ -87,7 +86,7 @@ def chacha_data_chart(cha_data):
     )
     
     st.plotly_chart(fig_cha, use_container_width=True)
-
+  
 def opti_budget_tab(mmm, cha_data):
     from meridian.analysis.optimizer import BudgetOptimizer
     optimizer = BudgetOptimizer(mmm)
@@ -102,8 +101,12 @@ def opti_budget_tab(mmm, cha_data):
     # Formatowanie danych w tabeli
     budget_allocation_tab['Non-optimized Spend'] = budget_allocation_tab['Non-optimized Spend'].apply(lambda x: '{:,.0f}'.format(x).replace(',', ' '))
     budget_allocation_tab['Optimized Spend'] = budget_allocation_tab['Optimized Spend'].apply(lambda x: '{:,.0f}'.format(x).replace(',', ' '))
+    budget_allocation_tab = budget_allocation_tab.reset_index()
     # Tworzenie HTML z tabelą
-    st.table(budget_allocation_tab.style.hide(axis="index"))
+    st.table(budget_allocation_tab)
+
+
+
 
 
     

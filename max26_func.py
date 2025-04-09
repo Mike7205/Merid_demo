@@ -26,8 +26,6 @@ from meridian.analysis import visualizer
 from meridian.analysis import summarizer
 from meridian.analysis import formatter
 
-
-
 # visualizer.ModelDiagnostics(mmm).plot_prior_and_posterior_distribution()
 def prior_posterior_data(mmm):
     media_channels = mmm.input_data.media_channel.to_numpy()
@@ -464,6 +462,9 @@ def response_hill_chart(res_hi):
    
 
 
+
+
+    
 
 
 
