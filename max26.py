@@ -103,19 +103,28 @@ show_opti = st.sidebar.checkbox('Recommended budget allocation', value=False , k
 if show_opti:
     st.markdown("<br>", unsafe_allow_html=True)
     st.subheader('Standard optimization scenario', divider="blue") 
-    from max26_opti_func import chacha_data, chacha_data_chart, opti_budget_tab  
+    from max26_opti_func import chacha_data, chacha_data_chart, opti_budget_tab, chacha_pie_chart, incremental_reve, incremental_reve_chart  
     cha_data = chacha_data(mmm)
-    chart_col, tab_col = st.columns([2, 3])  # Dwie kolumny: lewa większa
+    chart_col, tab_col = st.columns([2, 2])  # Dwie kolumny: lewa większa
     with chart_col:
-        st.markdown("<br>", unsafe_allow_html=True)
-        chacha_data_chart(cha_data)
+        #st.markdown("<br>", unsafe_allow_html=True)
+        chacha_data_chart()
+        #st.markdown("<br>", unsafe_allow_html=True)
+        chacha_pie_chart()
 
     with tab_col:
         st.markdown("<br>", unsafe_allow_html=True)
         st.write('**Optimized budget allocation**')
-        opti_budget_tab(mmm, cha_data)
-            
+        st.markdown("<br>", unsafe_allow_html=True)
+        opti_budget_tab(mmm)
+        st.markdown("<br><br><br><br>", unsafe_allow_html=True)
+        inc_reve = incremental_reve()
+        incremental_reve_chart(inc_reve)
 
+    st.subheader('Optimized budget on response curves', divider="green")
+    from max26_opti_func import response_curves, response_curves_chart
+    response_curves(mmm)
+    response_curves_chart()
 
 show_custom_opti = st.sidebar.checkbox('Customized budget allocation', value=False , key='key_custom_opti')
 if show_custom_opti:
